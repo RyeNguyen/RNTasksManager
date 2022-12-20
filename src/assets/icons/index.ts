@@ -1,0 +1,11 @@
+export { default as IconDashboard } from './IconDashboard';
+export { default as IconDashboardLarge } from './IconDashboardLarge';
+export { default as IconAdd } from './IconAdd';
+export { default as IconSearch } from './IconSearch';
+export { default as IconFilter } from './IconFilter';
+export { default as IconList } from './IconList';
+export { default as IconArrow } from './IconArrow';
+export { default as IconCalendar } from './IconCalendar';
+export { default as IconArrowDashed } from './IconArrowDashed';
+export { default as IconTask } from './IconTask';
+export { default as IconSignInDecoration } from './IconSignInDecoration';
