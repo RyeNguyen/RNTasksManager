@@ -1,16 +1,28 @@
 import React from 'react';
+import { GestureResponderEvent } from 'react-native';
+import { FieldError } from 'react-hook-form';
 
 export type IconButtonParamList = {
   children: React.ReactNode;
   buttonColor?: string;
-  onPress?: Function;
+  onPress?: (event: GestureResponderEvent) => void;
+};
+
+export type defaultButtonParamList = {
+  buttonText: string;
+  onPress?: (event: GestureResponderEvent) => void;
 };
 
 export type InputFieldParamList = {
   inputLabel?: string;
+  inputPreIcon?: React.ReactNode;
+  inputPostIcon?: React.ReactNode;
   inputPlaceholder: string;
-  isSearched: boolean;
-  hasFilter: boolean;
+  secureText?: boolean;
+  onIconTap?: (event: GestureResponderEvent) => void;
+  onChange?: (text: string) => void;
+  value?: string;
+  error?: FieldError;
 };
 
 export interface TabItemType {

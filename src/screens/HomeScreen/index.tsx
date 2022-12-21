@@ -11,7 +11,7 @@ import {
   TaskCardSimple,
 } from '../../components';
 import { homeTabItems } from '../../data/tabItems';
-import { IconList, IconTask } from '../../assets/icons';
+import { IconFilter, IconList, IconSearch, IconTask } from '../../assets/icons';
 
 const HomeScreen: React.FC<any> = () => {
   const [currentTab, setCurrentTab] = useState<number>(1);
@@ -21,7 +21,11 @@ const HomeScreen: React.FC<any> = () => {
       <HomeHeader />
 
       <View style={styles.searchSection}>
-        <InputField inputPlaceholder='Search' isSearched={true} hasFilter={true} />
+        <InputField
+          inputPreIcon={<IconSearch />}
+          inputPostIcon={<IconFilter />}
+          inputPlaceholder='Search'
+        />
       </View>
 
       <TabsSystem tabItems={homeTabItems} currentTab={currentTab} onSelectTab={setCurrentTab} />

@@ -1,4 +1,5 @@
 export { default as IconButton } from './Button/IconButton.component';
+export { default as DefaultButton } from './Button/DefaultButton.component';
 export { default as InputField } from './InputField.component';
 export { default as TabsSystem } from './TabsSystem.component';
 export { default as SectionContainer } from './SectionContainer.component';

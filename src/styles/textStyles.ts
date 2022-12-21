@@ -36,6 +36,9 @@ const textStyles = StyleSheet.create({
   textOrange: {
     color: colors.secondary,
   },
+  textRed: {
+    color: colors.red,
+  },
 });
 
 export default textStyles;

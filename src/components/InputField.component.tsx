@@ -1,44 +1,53 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import { InputFieldParamList } from '../types/component.types';
-import { IconFilter, IconSearch } from '../assets/icons';
 import { textStyles } from '../styles';
 import { colors, sizes } from '../constants';
 
 const InputFieldComponent: React.FC<InputFieldParamList> = ({
   inputLabel,
+  inputPreIcon,
+  inputPostIcon,
   inputPlaceholder = '',
-  isSearched = false,
-  hasFilter = false,
+  secureText = false,
+  onIconTap,
+  onChange,
+  value,
+  error,
 }) => {
   const [isFocused, setIsFocused] = useState<boolean>(false);
+  console.log(error);
 
   return (
     <>
       {inputLabel ? <Text style={[textStyles.h3, styles.label]}>{inputLabel}</Text> : null}
       <View style={[styles.inputWrapper, isFocused && styles.inputActive]}>
-        {isSearched ? (
-          <View style={styles.searchIcon}>
-            <IconSearch />
-          </View>
-        ) : null}
+        {inputPreIcon ? <View style={styles.preIcon}>{inputPreIcon}</View> : null}
         <TextInput
           style={styles.input}
           autoCapitalize='none'
           autoCorrect={false}
           cursorColor={colors.white}
           placeholder={inputPlaceholder}
-          placeholderTextColor={colors.white}
+          placeholderTextColor='rgba(255, 255, 255, 0.6)'
           onBlur={() => setIsFocused(false)}
           onFocus={() => setIsFocused(true)}
-          returnKeyType={isSearched ? 'search' : 'done'}
+          secureTextEntry={secureText}
+          onChangeText={onChange}
+          value={value}
+          //returnKeyType={}
         />
-        {hasFilter ? (
-          <TouchableOpacity style={styles.filterButton}>
-            <IconFilter />
+        {inputPostIcon ? (
+          <TouchableOpacity style={styles.postIcon} onPress={onIconTap}>
+            {inputPostIcon}
           </TouchableOpacity>
         ) : null}
       </View>
+      {error ? (
+        <Text style={[textStyles.textMain, textStyles.textRed, styles.errMsg]}>
+          This is required.
+        </Text>
+      ) : null}
     </>
   );
 };
@@ -58,7 +67,7 @@ const styles = StyleSheet.create({
     paddingVertical: sizes.sizeSmallH,
     paddingHorizontal: sizes.sizeBig,
   },
-  searchIcon: {
+  preIcon: {
     marginRight: sizes.sizeSmall,
   },
   input: {
@@ -71,7 +80,10 @@ const styles = StyleSheet.create({
   inputActive: {
     borderColor: colors.primary,
   },
-  filterButton: {
+  postIcon: {
     marginLeft: sizes.sizeSmall,
+  },
+  errMsg: {
+    marginTop: sizes.sizeSmallerH,
   },
 });

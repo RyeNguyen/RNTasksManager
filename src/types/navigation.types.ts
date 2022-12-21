@@ -7,8 +7,8 @@ export type RootStackParamList = {
 };
 
 export type HomeTabParamList = {
-  Home: undefined;
-  Chat: undefined;
-  Notification: undefined;
-  Settings: undefined;
+  Home: React.FC;
+  Chat: React.FC;
+  Notification: React.FC;
+  Settings: React.FC;
 };
