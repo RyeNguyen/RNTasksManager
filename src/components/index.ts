@@ -5,3 +5,4 @@ export { default as TabsSystem } from './TabsSystem.component';
 export { default as SectionContainer } from './SectionContainer.component';
 export { default as ProjectCard } from './Card/ProjectCard.component';
 export { default as TaskCardSimple } from './Card/TaskCardSimple.component';
+export { default as KeyboardAvoider } from './KeyboardAvoider.component';

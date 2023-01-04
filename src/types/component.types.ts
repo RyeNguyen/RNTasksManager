@@ -19,7 +19,7 @@ export type InputFieldParamList = {
   inputPostIcon?: React.ReactNode;
   inputPlaceholder: string;
   secureText?: boolean;
-  onIconTap?: (event: GestureResponderEvent) => void;
+  onIconTap?: () => void;
   onChange?: (text: string) => void;
   value?: string;
   error?: FieldError;
@@ -40,5 +40,9 @@ export type SectionContainerParamList = {
   hasArrow?: boolean;
   sectionName: string;
   sectionIcon: React.ReactNode;
+  children: React.ReactNode;
+};
+
+export type KeyboardAvoiderParamList = {
   children: React.ReactNode;
 };

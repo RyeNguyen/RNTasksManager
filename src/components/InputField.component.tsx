@@ -3,6 +3,8 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-nativ
 import { InputFieldParamList } from '../types/component.types';
 import { textStyles } from '../styles';
 import { colors, sizes } from '../constants';
+import { validationSchema } from '../data/validationSchema';
+import { ValidationSchemaObject } from '../types/validation.types';
 
 const InputFieldComponent: React.FC<InputFieldParamList> = ({
   inputLabel,
@@ -16,7 +18,13 @@ const InputFieldComponent: React.FC<InputFieldParamList> = ({
   error,
 }) => {
   const [isFocused, setIsFocused] = useState<boolean>(false);
-  console.log(error);
+  const [hidePassword, setHidePassword] = useState<boolean>(secureText);
+  const errorUI = error ? validationSchema.find((item) => item.type === error?.type) : null;
+
+  const handleTapIcon = () => {
+    onIconTap && onIconTap();
+    if (secureText) setHidePassword(!hidePassword);
+  };
 
   return (
     <>
@@ -32,20 +40,20 @@ const InputFieldComponent: React.FC<InputFieldParamList> = ({
           placeholderTextColor='rgba(255, 255, 255, 0.6)'
           onBlur={() => setIsFocused(false)}
           onFocus={() => setIsFocused(true)}
-          secureTextEntry={secureText}
+          secureTextEntry={hidePassword}
           onChangeText={onChange}
           value={value}
           //returnKeyType={}
         />
         {inputPostIcon ? (
-          <TouchableOpacity style={styles.postIcon} onPress={onIconTap}>
+          <TouchableOpacity style={styles.postIcon} onPress={handleTapIcon}>
             {inputPostIcon}
           </TouchableOpacity>
         ) : null}
       </View>
       {error ? (
         <Text style={[textStyles.textMain, textStyles.textRed, styles.errMsg]}>
-          This is required.
+          {errorUI?.message}
         </Text>
       ) : null}
     </>

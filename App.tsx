@@ -1,20 +1,19 @@
 import React from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import store from './src/redux/store';
+import { Provider } from 'react-redux';
 import RootNavigator from './src/navigation/RootNavigator';
-
-const queryClient = new QueryClient();
 
 const App = () => {
   return (
-    <QueryClientProvider client={queryClient}>
+    <Provider store={store}>
       <NavigationContainer>
         <SafeAreaView style={styles.container}>
           <RootNavigator />
         </SafeAreaView>
       </NavigationContainer>
-    </QueryClientProvider>
+    </Provider>
   );
 };
 
